@@ -1,9 +1,8 @@
 FROM node:10-alpine
 WORKDIR /app
 COPY package.json .
-RUN npm install
+RUN yarn install
 COPY . .
-RUN npm run build
 ###########################
 #Deploy
 FROM nginx
