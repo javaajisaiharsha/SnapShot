@@ -1,7 +1,8 @@
 FROM node:10-alpine
 WORKDIR /app
 COPY package.json .
-RUN yarn install
+RUN npm config set [--global] devdir /tmp/.gyp
+RUN npm install
 COPY . .
 ###########################
 #Deploy
