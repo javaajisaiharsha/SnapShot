@@ -1,13 +1,11 @@
 FROM node:10-alpine
 WORKDIR /app
 COPY package.json .
-RUN npm config set [--global] devdir /tmp/.gyp
 RUN npm install
 COPY . .
-###########################
-#Deploy
+RUN npm run build
 FROM nginx
-COPY --from=0 /app /usr/share/nginx/html/
-WORKDIR /usr/share/nginx/html/snapshot
-##RUN mv ../static .
+COPY --from=0 /app/build /usr/share/nginx/html/
+WORKDIR /usr/share/nginx/html/SnapShot
+RUN mv ../static .
 EXPOSE 80
