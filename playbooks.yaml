@@ -1,0 +1,16 @@
+---
+- hosts: harsha
+  tasks:
+  - name: docker install
+    become: true
+    become_method: sudo
+    become_user: root
+  - name: stating service
+    shell:
+      cmd: sudo systemctl start docker
+  - name: pulling emoji-search
+    shell:
+      cmd: sudo docker pull javaajisaiharsha/emoji-search:v1
+  - name: container run
+    shell:
+      cmd: sudo docker run -d --name harsha -p 80:80 javaajisaiharsha/emoji-search:v1
